@@ -44,8 +44,8 @@ shinyUI(navbarPage("Yelp Business Reviews", id="nav",
 
       tags$head(
         # Include our custom CSS
-        includeCSS("styles.css"),
-        includeScript("gomap.js")
+        includeCSS("libraries/styles.css"),
+        includeScript("libraries/gomap.js")
       ),
 
       leafletOutput("map", width="100%", height="100%" ),

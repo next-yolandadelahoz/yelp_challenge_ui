@@ -1,0 +1,82 @@
+---
+title: "Development Shiny Practical Work"
+author: "Yolanda de la Hoz Simon"
+date: "252015"
+output: word_document
+---
+
+# Development of the shiny application
+
+####Tasks:
+
+0- Research of the available tools to develop the project (APARTE)
+
+1- Data Preprocessing to get the data model
+
+   1.1. Data collection
+   1.2. Transform json and load the data in R
+   1.3. Clean and filter the data
+
+2- UI - View development 
+
+   1.1. Composition and development of the different widgets in the ui.R file
+   
+3- UI - Controller development
+    
+   1.1. Development of the logic associated to each view
+   1.2. Coordination of each view to create an integrate and reactive design
+
+4- UI - General design testing      (APARTE)
+    
+   1.1. Visualization based tests
+  ( of the general design, responsivness, response time)
+  
+
+### 1- Data Preprocessing to get the data model
+
+####  1.1. Data collection
+
+The train_data is in titanic.csv. The variable to predict is "Survived", it informs whether a passenger died in the accident or not. 
+
+```{r}
+```
+
+####  1.2. Transform json and load the data in R
+
+Remove unnecessary variables: literals, strings, ids, etc or variables with missing values.
+
+```{r}
+```
+
+####  1.3. Clean and filter the data
+
+```{r}
+```
+
+
+### 2- UI - View development 
+
+####  1.1. Composition and development of the different widgets in the ui.R file
+
+The train_data is in titanic.csv. The variable to predict is "Survived", it informs whether a passenger died in the accident or not. 
+
+```{r}
+```
+
+
+### 3- UI - Controller development 
+
+####  1.1. Development of the logic associated to each view
+
+The train_data is in titanic.csv. The variable to predict is "Survived", it informs whether a passenger died in the accident or not. 
+
+```{r}
+```
+
+####  1.2. Coordination of each view to create an integrate and reactive design
+
+The train_data is in titanic.csv. The variable to predict is "Survived", it informs whether a passenger died in the accident or not. 
+
+```{r}
+```
+
