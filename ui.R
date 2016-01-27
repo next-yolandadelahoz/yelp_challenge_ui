@@ -7,9 +7,7 @@ library(plotly)
 color_vars <- c(
   "Stars mark" = "stars",
   "Review count" = "review_count",
-  "Categories" = "categories",
-  "Neighbourdhoods" = "neighborhoods"
-  # difference starts
+  "Starts difference" = "stars_diff"
 )
 
 size_vars <- c(
@@ -26,17 +24,6 @@ category_vars <- c(
    "Home Services" = "Home Services",
    "Food"="Food"
 )
-
-week_day_vars <- c(
-  "Monday" = "Monday",
-  "Tuesday" = "Tuesday",
-  "Wednesday" = "Wednesday",
-  "Thursday" = "Thursday",
-  "Friday" = "Friday",
-  "Saturday"="Saturday",
-  "Sunday"="Sunday"
-)
-
 
 shinyUI(navbarPage("Yelp Business Reviews", id="nav",
 
@@ -67,10 +54,9 @@ shinyUI(navbarPage("Yelp Business Reviews", id="nav",
         selectInput("business_category", "Category", category_vars, selected = "adultpop"),
   
         sliderInput("reviews", "Minimum number of reviews:",
-                    min = 0, max = 500, value = 10, step = 5)
-        
-
-
+                    min = 0, max = 500, value = 10, step = 5), 
+        sliderInput("stars", "Minimum number of stars:",
+                     min = 0, max = 5, value = 0, step = 1)
       ),
 
       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
@@ -79,7 +65,7 @@ shinyUI(navbarPage("Yelp Business Reviews", id="nav",
                     tabsetPanel(type = "tabs",
                                 tabPanel("Bar chart",plotlyOutput("histRanking", height = 200)),
                                 tabPanel("Scatterplot", plotlyOutput("scatterRanking", height = 250)),
-                                tabPanel("Summary",verbatimTextOutput("report"))
+                                tabPanel("States summary",plotlyOutput("scatterRanking2", height = 250))
                     )
       ),
 

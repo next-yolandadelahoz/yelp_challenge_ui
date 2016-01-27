@@ -52,29 +52,28 @@ shinyServer(function(input, output, session) {
              longitude >= lngRng[1] & longitude <= lngRng[2])
   })
   
-  # Filter the movies, returning a data frame
+  # Filter the business, returning a data frame
   zipsIFiltered<- reactive({
     # Due to dplyr issue #318, we need temp variables for input values
     reviews <- input$reviews
     stars_input <- input$stars
-    week_day <- input$week_day
-    day_hours <- input$day_hours[1]
 
-    
     # Apply filters
     m <- subset(zipsInBounds(),
-           review_count >= reviews )
+                review_count >= reviews &
+                  stars >= stars_input)
+    
     # Filter by category
     if (input$business_category != "All") {
-      business_data <- m[which(grepl(input$business_category, m$categories)), ]
+      m <- m[which(grepl(input$business_category, m$categories)), ]
     }else
-      business_data <- m
+      m <- m
     
     # Filter open business
     if (input$open_checkbox==TRUE) {
-      business_data <- m[which(m$open==TRUE), ]
+      m <- m[which(m$open==TRUE), ]
     }else
-      business_data <- m[which(business_data$open==FALSE), ]
+      m <- m[which(m$open==FALSE), ]
     
   })
   
@@ -86,9 +85,7 @@ shinyServer(function(input, output, session) {
       return(NULL)
     
     pal<-colorPalette(colorData,colorBy)
-    #p<-plot_ly(zipsIFiltered(), x = zipsIFiltered()[[input$color]], y = zipsIFiltered()[[input$size]], name = label,
-     #       mode = "markers", color= colorData,colors = "Spectral" , size = zipsIFiltered()[[input$size]],showlegend = FALSE)
-    
+
     labelx <- paste(input$business_category, "business", input$color , "(visible business)", sep=" ")
     ax <- list(
       title = labelx,
@@ -131,6 +128,46 @@ shinyServer(function(input, output, session) {
     layout(xaxis = ax, yaxis = ay)
   })
   
+  output$scatterRanking2 <- renderPlotly({
+    if (nrow(zipsIFiltered()) == 0)
+      return(NULL)
+    
+    # Get total review count for the states
+    if(input$size=="Stars mark"){
+      review_by_state <- aggregate( stars ~ state, data = zipsIFiltered(), FUN = sum)
+      labelx <- paste(input$business_category, "business", input$color , "(visible business)", sep=" ")
+      ax <- list(
+        title = labelx,
+        showticklabels = TRUE
+      )
+      
+      ay <- list(
+        title = input$size,
+        showticklabels = TRUE
+      )
+      p<-plot_ly(review_by_state,type = "bar", x =state, y = stars,
+                 size = stars)%>%
+     layout(xaxis = ax, yaxis = ay)
+   }
+    else{
+      review_by_state <- aggregate( review_count ~ state, data = zipsIFiltered(), FUN = sum)
+      labelx <- paste(input$business_category, "business", input$color , "(visible business)", sep=" ")
+      ax <- list(
+        title = labelx,
+        showticklabels = TRUE
+      )
+      
+      ay <- list(
+        title = input$size,
+        showticklabels = TRUE
+      )
+      p<-plot_ly(review_by_state,type = "bar", x = state, y = review_count,
+                 size = review_count)%>%
+        layout(xaxis = ax, yaxis = ay)
+    }
+    
+  })
+  
   # This observer is responsible for maintaining the circles and legend,
   # according to the variables the user has chosen to map to color and size.
   observe({
@@ -171,7 +208,7 @@ shinyServer(function(input, output, session) {
       tags$h4(as.character(selectedZip$name)),
       tags$h5("Categories:", as.character(selectedZip$categories)),
       sprintf("Number of reviews: %s", as.integer(selectedZip$review_count)), tags$br(),
-      sprintf("Stars score: %s%%", as.integer(selectedZip$stars))
+      sprintf("Stars score: %s", as.integer(selectedZip$stars))
     ))
     leafletProxy("map") %>% addPopups(lng, lat, content, layerId = zipcode)
   }
