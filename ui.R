@@ -1,5 +1,6 @@
 library(shiny)
 library(leaflet)
+library(plotly)
 
 
 # Choices for drop-downs
@@ -64,7 +65,7 @@ shinyUI(navbarPage("Yelp Business Reviews", id="nav",
         sliderInput("reviews", "Minimum number of reviews:",
                     min = 0, max = 500, value = 10, step = 5),
         sliderInput("stars", "Minimum number of stars:",
-                    min = 0, max = 5, value = 5, step = 1),
+                    min = 0, max = 5, value = 0, step = 1),
         selectInput("business_category", "Business category", category_vars, selected = "adultpop"),
         selectInput("week_day", "Day of the week", week_day_vars, selected = "adultpop"),
         sliderInput("day_hours", "Hours of the day:",
@@ -74,10 +75,10 @@ shinyUI(navbarPage("Yelp Business Reviews", id="nav",
 
       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
                     draggable = TRUE, top = 400, left = 20, right = 20, bottom = "auto",
-                    width = 690, height = "auto",
+                    width = 690, height =  "auto",
                     tabsetPanel(type = "tabs",
-                                tabPanel("Histogram",plotOutput("histCentile", height = 200)),
-                                tabPanel("Scatterplot", plotOutput("scatterCollegeIncome", height = 250)),
+                                tabPanel("Histogram",plotlyOutput("histRanking", height = 200)),
+                                tabPanel("Scatterplot", plotlyOutput("scatterRanking", height = 250)),
                                 tabPanel("Summary",verbatimTextOutput("report"))
                     )
       ),
