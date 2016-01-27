@@ -14,6 +14,16 @@ business_data <- business.df[sample.int(nrow(business.df), 60000),]
 # will be drawn last and thus be easier to see
 business_data <- business_data[order(business.df$stars),]
 
+cleantable <- business_data %>%
+  select(
+    City = city,
+    State = state,
+    Zipcode = zip_code,
+    Stars = stars,
+    Lat = latitude,
+    Long = longitude
+  )
+
 shinyServer(function(input, output, session) {
   
   ## Interactive Map ###########################################
@@ -152,12 +162,10 @@ shinyServer(function(input, output, session) {
   showZipcodePopup <- function(zipcode, lat, lng) {
     selectedZip <- business_data[business_data$zip_code == zipcode,]
     content <- as.character(tagList(
-      tags$h4("Stars score:", as.integer(selectedZip$stars)),
-      tags$strong(HTML(sprintf("%s, %s %s",
-                               selectedZip$city.x, selectedZip$state.x, selectedZip$zipcode
-      ))), tags$br(),
+      tags$h4(as.character(selectedZip$name)),
+      tags$h5("Categories:", as.character(selectedZip$categories)),
       sprintf("Number of reviews: %s", as.integer(selectedZip$review_count)), tags$br(),
-      sprintf("Category: %s%%", as.character(selectedZip$category))
+      sprintf("Stars score: %s%%", as.integer(selectedZip$stars))
     ))
     leafletProxy("map") %>% addPopups(lng, lat, content, layerId = zipcode)
   }
@@ -218,8 +226,8 @@ shinyServer(function(input, output, session) {
   output$ziptable <- DT::renderDataTable({
     df <- cleantable %>%
       filter(
-        Score >= input$minScore,
-        Score <= input$maxScore,
+        Stars >= input$minScore,
+        Stars <= input$maxScore,
         is.null(input$states) | State %in% input$states,
         is.null(input$cities) | City %in% input$cities,
         is.null(input$zipcodes) | Zipcode %in% input$zipcodes

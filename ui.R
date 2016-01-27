@@ -77,7 +77,7 @@ shinyUI(navbarPage("Yelp Business Reviews", id="nav",
                     draggable = TRUE, top = 400, left = 20, right = 20, bottom = "auto",
                     width = 690, height =  "auto",
                     tabsetPanel(type = "tabs",
-                                tabPanel("Histogram",plotlyOutput("histRanking", height = 200)),
+                                tabPanel("Bar chart",plotlyOutput("histRanking", height = 200)),
                                 tabPanel("Scatterplot", plotlyOutput("scatterRanking", height = 250)),
                                 tabPanel("Summary",verbatimTextOutput("report"))
                     )

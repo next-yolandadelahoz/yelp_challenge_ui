@@ -63,10 +63,21 @@ df <- multmerge()
 saveRDS(df, file="./yelp_dataset/reviews.rds")
 if(!exists("review.df ")) review.df <- readRDS("./yelp_dataset/reviews.rds")
 
+## Clean data ################################################################################################################
 
+# NA starts and review count is considered to be 0 
+business.df$stars[is.na(business.df$stars)] <- 0
+business.df$review_count[is.na(business.df$review_count)] <- 0
+
+#NA in Hours is considered to be 00:00
+hours <- grepl("hours.", names(business.df))
+business.df[hours] <- replace(business.df[hours], is.na(business.df[hours]), "00:00")
+business.df[hours] <- lapply(business.df[hours], as.factor)
 
 ## Filter data ################################################################################################################
 
+business_table <- data.frame(business.df$business_id,business.df$name,business.df$stars,business.df$state,business.df$city,business.df$latitude,business.df$longitude)
+business_table <- as.data.frame.table(business_table)
 #Flatten the data frame to avoid nested structure,
 #which comes from the former json nature of the data
 library(jsonlite)
@@ -86,10 +97,6 @@ attrib <- grepl("attributes.", names(business.df))
 business.df[attrib] <- replace(business.df[attrib], is.na(business.df[attrib]), FALSE)
 business.df[attrib] <- lapply(business.df[attrib], as.factor)
 
-#NA in Hours is considered to be 00:00
-hours <- grepl("hours.", names(business.df))
-business.df[hours] <- replace(business.df[hours], is.na(business.df[hours]), "00:00")
-business.df[hours] <- lapply(business.df[hours], as.factor)
 
 #Reviews
 reviews <- readRDS("review.rds")
@@ -97,9 +104,7 @@ reviews <- readRDS("review.rds")
 reviews <- reviews[, -c(6, 7)]
 reviews <- flatten(reviews, recursive = TRUE)
 
-# NA starts and review count is considered to be 0 
-business.df$stars[is.na(business.df$stars)] <- 0
-business.df$review_count[is.na(business.df$review_count)] <- 0
+
 
 ##exclude friend network, it would be interesting to analyse this,
 ##but I leave it for another research project
