@@ -62,14 +62,14 @@ shinyUI(navbarPage("Yelp Business Reviews", id="nav",
         sliderInput("size_scale", "Size scale:",
                     min = 10, max = 200, value = 50, step = 5),
         br(),
+        h4("Filter options"),
+        checkboxInput("open_checkbox", label = "Currently Open", value = TRUE),
+        selectInput("business_category", "Category", category_vars, selected = "adultpop"),
+  
         sliderInput("reviews", "Minimum number of reviews:",
-                    min = 0, max = 500, value = 10, step = 5),
-        sliderInput("stars", "Minimum number of stars:",
-                    min = 0, max = 5, value = 0, step = 1),
-        selectInput("business_category", "Business category", category_vars, selected = "adultpop"),
-        selectInput("week_day", "Day of the week", week_day_vars, selected = "adultpop"),
-        sliderInput("day_hours", "Hours of the day:",
-                    min = 0, max = 24, value = 50, step = 1)
+                    min = 0, max = 500, value = 10, step = 5)
+        
+
 
       ),
 

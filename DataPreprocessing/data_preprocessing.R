@@ -83,8 +83,7 @@ business_table <- as.data.frame.table(business_table)
 library(jsonlite)
 business.df <- flatten(business.df, recursive = TRUE)
 
-##open,
-business.df <- business.df[which(business.df$open==TRUE), ]
+
 
 #NA in Attributes is considered to be FALSE
 #See http://stackoverflow.com/questions/2991514/r-preventing-unlist-to-drop-null-values

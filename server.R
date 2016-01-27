@@ -59,16 +59,22 @@ shinyServer(function(input, output, session) {
     stars_input <- input$stars
     week_day <- input$week_day
     day_hours <- input$day_hours[1]
+
     
     # Apply filters
     m <- subset(zipsInBounds(),
-           review_count >= reviews &
-             stars >= stars_input)
+           review_count >= reviews )
     # Filter by category
     if (input$business_category != "All") {
       business_data <- m[which(grepl(input$business_category, m$categories)), ]
     }else
       business_data <- m
+    
+    # Filter open business
+    if (input$open_checkbox==TRUE) {
+      business_data <- m[which(m$open==TRUE), ]
+    }else
+      business_data <- m[which(business_data$open==FALSE), ]
     
   })
   
