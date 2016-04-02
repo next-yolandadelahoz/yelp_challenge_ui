@@ -20,7 +20,6 @@ Imports:
     lattice,
     dplyr,
     magrittr
-
 License: GNU + file LICENSE
 SystemRequirements: pandoc with https support
 LazyData: true
