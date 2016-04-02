@@ -83,6 +83,8 @@ The dataset is provided in JSON format and it includes some interesting features
 In this section, it is identified some relevant questions that the application should solve with the purpose of have a user-centered design that better fix the user requirements.
 
 **Business owners**
+
+
 **Need** : Improve the quality of their services → Offer better services.
 **Questions** :
 
@@ -94,6 +96,7 @@ In this section, it is identified some relevant questions that the application s
         6. Predict when a business will be more busy.
 
 **Customers**
+
 **Need**: Look up the better business according to their preferences.
 **Questions**:
 
