@@ -1,4 +1,4 @@
-Yelp Challenge UI (http://yolanda93.github.io/yelp_challenge_ui/)
+Yelp Challenge UI (https://yolanda93.github.io/yelp_challenge_ui)
 ===============================================================================
 
 [![Build
@@ -296,4 +296,4 @@ Yolanda de la Hoz Simón. yolanda93h@gmail.com
 
 <h2 id="Web-page">Web page </h2> 
 
-http://yolanda93.github.io/yelp_challenge_ui/
+https://yolanda93.github.io/yelp_challenge_ui/
