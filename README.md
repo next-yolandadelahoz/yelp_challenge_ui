@@ -15,6 +15,7 @@ The data can be downloaded from http://www.yelp.com/dataset_challenge.
 Table of contents
 =================
 
+-   [Example of execution](#Example of execution)
 -   [Dataset description](#Dataset-description)
 -   [Application domain](#Application-domain)
 -   [Application design](#Application-design)
@@ -30,6 +31,21 @@ Table of contents
 -   [Development](#Development)
 -   [Contact information](#Contact-information)
 -   [Web page](#Web-page)
+
+<h2 id="Example-of-execution">Example of execution </h2> 
+
+There are many ways to download and run it:
+
+```R
+library(shiny)
+
+# Easiest way is to use runGitHub
+runGitHub("yelp_challenge_ui", "yolanda93")
+
+# Run a tar or zip file directly
+runUrl("https://github.com/yolanda93/yelp_challenge_ui/archive/master.tar.gz")
+runUrl("https://github.com/yolanda93/yelp_challenge_ui/archive/master.zip")
+```
 
 <h2 id="Dataset-description">Dataset description </h2>
 
@@ -258,6 +274,7 @@ The source code of this part it is composed of the following shiny elements to m
 
 There are many ways to download and run it:
 
+```R
 library(shiny)
 
 # Easiest way is to use runGitHub
@@ -266,7 +283,7 @@ runGitHub("yelp_challenge_ui", "yolanda93")
 # Run a tar or zip file directly
 runUrl("https://github.com/yolanda93/yelp_challenge_ui/archive/master.tar.gz")
 runUrl("https://github.com/yolanda93/yelp_challenge_ui/archive/master.zip")
-
+```
 
 <h2 id="Contact-information">Contact information </h2>      
 ## Contact information
