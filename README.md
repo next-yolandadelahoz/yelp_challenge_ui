@@ -1,4 +1,8 @@
-# Yelp Challenge UI
+Yelp Challenge UI
+===============================================================================
+
+[![Build
+Status](https://travis-ci.org/yolanda93/yelp_challenge.svg?branch=master)](https://travis-ci.org/yolanda93/yelp_challenge)
 
 The aim of this project is the design and development of an interactive visual application designed to respond the most relevant questions in the small businesses domain taking advantage of the Yelp! business reviews.
 
@@ -7,6 +11,25 @@ The aim of this project is the design and development of an interactive visual a
 The dataset is provided by Yelp, a service that allows users to review businesses and check other users reviews. They provide a subset of their data in a challenge (which is in its 6th round) to promote the development of innovative visual analytic tools. This dataset contains geolocalized information about businesses, users reviews and scores, etc. Many different analyses could be carried out on these data and they support many of the encoding options seen in class (cartographic arrangement, filtering of data, etc.).
 
 The data can be downloaded from http://www.yelp.com/dataset_challenge.
+
+Table of contents
+=================
+
+-   [Dataset description](#demos)
+-   [Application domain](#Application domain)
+-   [Application design](#overview-main)
+    -   [Components description](#Components description)
+    -   [Interactive map](#Interactive map)
+    -   [Popup message](#Popup message)
+    -   [Business explorer](#Business explorer)  
+    -   [Graph summary](#Graph summary)
+    -   [Data explorer](#Data explorer)
+-   [Functional requirements definition](#Functional requirements definition)
+    -   [Data and task abstractions](#Data and task abstractions)
+    -   [Interaction and visual encoding](#Interaction and visual encoding)
+-   [Development](#Development)
+-   [Contact information](#Contact information)
+-   [Web page](#Web page)
 
 ## Dataset description
 
@@ -63,23 +86,23 @@ The application design is based in the following four main parts:
       * Graph summary: On the lower left side, that shows the different chart options (Bar chart, scatter plot and chart summary).
       * Data explorer: It can be accessed through the top navigation bar and shows a table with more detailed information.
 
-##### Components description
+#### Components description
 
 In this section it is described the main components of the application and the different use cases and tasks that a user could perform to answer the proposed questions.
 
-###### Interactive map
+##### Interactive map
 
 The interactive map shows a map with the data location. It can be navigated and zoomed to filter and show an interesting area.
 
 ![Alt text] (https://lh3.googleusercontent.com/INX-iQDemJp78FkgywWUk2xR479cYTgWcGhbPIAlD3YTITa-s1yfIRk5zCQkxEtOWWH8M_9x9eU89luCM-FCBex19AoyS_wwJjPgHbQELc9Q3wUc7OcUi7ggAl4UmJTYzg  "Interactive map")
 
-###### Popup message
+##### Popup message
 
 In the following picture it is shown an image with a zoomed region area showing in which the user has selected one of the business to show specific information such as the business categories that this business belongs to with the stars score and number of reviews.
 
 ![Alt text] (https://lh6.googleusercontent.com/4TTe09UIbThvBJMcdhlZFM70qXwOYL47El5fvgjvMnTwUatO0gv_rkmxSTmn0QVoD8HTJN3z8ZYmpLbbiFnwso2ej7WZk7pfHKtTitzMkVxf4ktz0Z1g_3Dd0xCkSuLDnw  "Popup message")
 
-##### Business explorer
+#### Business explorer
 
 The business explorer allows the user to select interesting information and filter data. It is divided in two main parts: business explorer and filter options.
 
@@ -178,31 +201,31 @@ The different interaction methods with each of the above visualization methods a
 
 The development of this application has followed the following stages:
 
-##### 0- Research of the available tools to develop the project
+#### 0- Research of the available tools to develop the project
 
 The project has been developed in the R programming language with the shiny library. Nevertheless, this application has made use of other libraries such as leaflet library in the implementation of the interactive map with the clustering option and the plotly library in the development of the charts of the graphics summary absolute panel.
 
-##### 1- Data Preprocessing to get the data model
+#### 1- Data Preprocessing to get the data model
 
 The source code that corresponds to this part it is located in the DataPreprocessing folder and it has to be launched before the application starts.
 
 As the most of the application it is done with the business data, for testing purposes it recommended only run the part associated to clean and load this data. Only it is required to load the reviews for the calculate the ranking difference.
 The phase could be subdivided in the following stages:
 
-######   1.1. Data collection
+#####   1.1. Data collection
 The data used for the development of this application is freely downloaded from the webpage http://www.yelp.com/dataset_challenge.
-######   1.2. Transform json and load the data in R
+#####   1.2. Transform json and load the data in R
 For this purpose I used the library jsonlite to read and save in R the data and convert it into data.frames objects. Nevertheless, in the case of the reviews data set it is also required a compression and reduction of the dataset due to huge volume of text data.
 
 
 
-######   1.3. Clean and filter the data
+#####   1.3. Clean and filter the data
 In the cleaning data process, I transformed most of the variables with NA value into 0 or 0:00 in case of hours. This allows me to visualize these data without losing the lost of information knowledge in some cases.
 To visualize the data and locate it in the map, it is also extracted the zip_code from the business dataset.
 
-##### 2- UI - View development
+#### 2- UI - View development
 
-######   2.1. Composition and development of the different widgets in the ui.R file
+#####   2.1. Composition and development of the different widgets in the ui.R file
  
 The UI is composed of two main views separate with a navbar and the tabPanel object, organized hierarchically with the composition of the following elements:
 
@@ -214,12 +237,12 @@ The UI is composed of two main views separate with a navbar and the tabPanel obj
     * absolutePanel (Graphs summary)
     * absolutePanel (Business explorer)
             
-##### 3- UI - Controller development
+#### 3- UI - Controller development
 
 This phase correspond to the development of the server side of the graphical interface server.R, it is responsible to perform the next two main tasks:
 
-######   3.1. Development of the logic associated to each view
-######   3.2. Coordination of each view to create an integrate and reactive design
+#####   3.1. Development of the logic associated to each view
+#####   3.2. Coordination of each view to create an integrate and reactive design
    
 The source code of this part it is composed of the following shiny elements to maintain synchronized the different views:
 
@@ -234,3 +257,7 @@ The source code of this part it is composed of the following shiny elements to m
 ## Contact information
 
 Yolanda de la Hoz Simón. yolanda93h@gmail.com
+
+## Web page
+
+http://yolanda93.github.io/yelp_challenge_ui/
