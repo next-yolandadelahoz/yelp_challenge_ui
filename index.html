@@ -29,18 +29,93 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h1>
-<a id="yelp-challenge-ui" class="anchor" href="#yelp-challenge-ui" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Yelp Challenge UI</h1>
+<a id="yelp-challenge-ui-" class="anchor" href="#yelp-challenge-ui-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Yelp Challenge UI </h1>
+
+<p><a href="https://travis-ci.org/yolanda93/yelp_challenge"><img src="https://travis-ci.org/yolanda93/yelp_challenge.svg?branch=master" alt="Build
+Status"></a></p>
 
 <p>The aim of this project is the design and development of an interactive visual application designed to respond the most relevant questions in the small businesses domain taking advantage of the Yelp! business reviews.</p>
 
-<p><img src="https://lh5.googleusercontent.com/rML-OlpdoI6ZeUgMnfnYyFkYs7sEv2Kh5YnkH2AyTpIjHQB0WrudxJDmDathTPC79d5VLWtnx31E7AV0lfekWq6wdeWoTxLNXb7tQbr8CfazBI1kyMIQwvE1mgbCb52wqQ" alt="Application design"></p>
+<p><img src="https://lh5.googleusercontent.com/rML-OlpdoI6ZeUgMnfnYyFkYs7sEv2Kh5YnkH2AyTpIjHQB0WrudxJDmDathTPC79d5VLWtnx31E7AV0lfekWq6wdeWoTxLNXb7tQbr8CfazBI1kyMIQwvE1mgbCb52wqQ" alt="Alt text" title="General Design"></p>
 
 <p>The dataset is provided by Yelp, a service that allows users to review businesses and check other users reviews. They provide a subset of their data in a challenge (which is in its 6th round) to promote the development of innovative visual analytic tools. This dataset contains geolocalized information about businesses, users reviews and scores, etc. Many different analyses could be carried out on these data and they support many of the encoding options seen in class (cartographic arrangement, filtering of data, etc.).</p>
 
 <p>The data can be downloaded from <a href="http://www.yelp.com/dataset_challenge">http://www.yelp.com/dataset_challenge</a>.</p>
 
-<h2>
-<a id="dataset-description" class="anchor" href="#dataset-description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dataset description</h2>
+<h1>
+<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Table of contents</h1>
+
+<ul>
+<li>  <a href="#Example%20of%20execution">Example of execution</a>
+</li>
+<li>  <a href="#Dataset-description">Dataset description</a>
+</li>
+<li>  <a href="#Application-domain">Application domain</a>
+</li>
+<li>  <a href="#Application-design">Application design</a>
+
+<ul>
+<li>  <a href="#Components-description">Components description</a>
+</li>
+<li>  <a href="#Interactive-map">Interactive map</a>
+</li>
+<li>  <a href="#Popup-message">Popup message</a>
+</li>
+<li>  <a href="#Business-explorer">Business explorer</a><br>
+</li>
+<li>  <a href="#Graph-summary">Graph summary</a>
+</li>
+<li>  <a href="#Data-explorer">Data explorer</a>
+</li>
+</ul>
+</li>
+<li>  <a href="#Functional-requirements-definition">Functional requirements definition</a>
+
+<ul>
+<li>  <a href="#Data-and-task-abstractions">Data and task abstractions</a>
+</li>
+<li>  <a href="#Interaction-and-visual-encoding">Interaction and visual encoding</a>
+</li>
+</ul>
+</li>
+<li>  <a href="#Development">Development</a>
+</li>
+<li>  <a href="#Contact-information">Contact information</a>
+</li>
+<li>  <a href="#Web-page">Web page</a>
+</li>
+</ul>
+
+<h2 id="Example-of-execution">
+<a id="example-of-execution-" class="anchor" href="#example-of-execution-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example of execution </h2> 
+
+<p>There are many ways to download and run it:</p>
+
+<div class="highlight highlight-source-r"><pre>library(<span class="pl-smi">shiny</span>)
+
+<span class="pl-c"># Easiest way is to use runGitHub</span>
+runGitHub(<span class="pl-s"><span class="pl-pds">"</span>yelp_challenge_ui<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>yolanda93<span class="pl-pds">"</span></span>)
+
+<span class="pl-c"># Run a tar or zip file directly</span>
+runUrl(<span class="pl-s"><span class="pl-pds">"</span>https://github.com/yolanda93/yelp_challenge_ui/archive/master.tar.gz<span class="pl-pds">"</span></span>)
+runUrl(<span class="pl-s"><span class="pl-pds">"</span>https://github.com/yolanda93/yelp_challenge_ui/archive/master.zip<span class="pl-pds">"</span></span>)</pre></div>
+
+<p>Or you can clone the git repository, then use <code>runApp()</code>:</p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># First clone the repository with git. If you have cloned it into</span>
+<span class="pl-c"># ~/yelp_challenge_ui, first go to that directory, then use runApp().</span>
+setwd(<span class="pl-s"><span class="pl-pds">"</span>~/yelp_challenge_ui<span class="pl-pds">"</span></span>)
+runApp()</pre></div>
+
+<p>To run a Shiny app from a subdirectory in the repo or zip file, you can use the <code>subdir</code> argument. This repository happens to contain another copy of the app in <code>inst/shinyapp/</code>.</p>
+
+<div class="highlight highlight-source-r"><pre>runGitHub(<span class="pl-s"><span class="pl-pds">"</span>yelp_challenge_ui<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>yolanda93<span class="pl-pds">"</span></span>, <span class="pl-v">subdir</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>inst/shinyapp/<span class="pl-pds">"</span></span>)
+
+runUrl(<span class="pl-s"><span class="pl-pds">"</span>https://github.com/yolanda93/yelp_challenge_ui/archive/master.tar.gz<span class="pl-pds">"</span></span>,
+  <span class="pl-v">subdir</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>inst/shinyapp/<span class="pl-pds">"</span></span>)</pre></div>
+
+<h2 id="Dataset-description">
+<a id="dataset-description-" class="anchor" href="#dataset-description-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dataset description </h2>
 
 <p>The dataset provided by Yelp (<a href="http://www.yelp.com/dataset_challenge">http://www.yelp.com/dataset_challenge</a>) is based on 61 million reviews with the aim to help people find the most relevant businesses for everyday needs.
 The dataset is provided in JSON format and it includes some interesting features described below.</p>
@@ -53,14 +128,15 @@ The dataset is provided in JSON format and it includes some interesting features
 <li>Tip: Tip text, business, user, date and likes.</li>
 </ul>
 
-<h2>
-<a id="application-domain" class="anchor" href="#application-domain" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Application domain</h2>
+<h2 id="Application-domain">
+<a id="application-domain-" class="anchor" href="#application-domain-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Application domain </h2>
 
 <p>In this section, it is identified some relevant questions that the application should solve with the purpose of have a user-centered design that better fix the user requirements.</p>
 
-<p><em>Business owners</em>
-<em>Need</em>: Improve the quality of their services → Offer better services.
-<em>Questions</em>:</p>
+<p><strong>Business owners</strong></p>
+
+<p><strong>Need</strong> : Improve the quality of their services → Offer better services.
+<strong>Questions</strong> :</p>
 
 <pre><code>    1. Which is the average rating that users give to my business?
     2. Is the number of hours that a business open affecting their ranking mark?
@@ -70,9 +146,10 @@ The dataset is provided in JSON format and it includes some interesting features
     6. Predict when a business will be more busy.
 </code></pre>
 
-<p><em>Customers</em>
-<em>Need</em>: Look up the better business according to their preferences.
-<em>Questions</em>:</p>
+<p><strong>Customers</strong></p>
+
+<p><strong>Need</strong>: Look up the better business according to their preferences.
+<strong>Questions</strong>:</p>
 
 <pre><code>   1. What are the top ranked (restaurants, shops...) in my location?
    2. What of these business open today?
@@ -90,8 +167,8 @@ The dataset is provided in JSON format and it includes some interesting features
 
 <p>The questions (with the associated underlying variables) that I will develop corresponds to the most common needs of two targeted users: business owners and customers.</p>
 
-<h2>
-<a id="application-design" class="anchor" href="#application-design" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Application design</h2>
+<h2 id="Application-design">
+<a id="application-design-" class="anchor" href="#application-design-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Application design </h2>
 
 <p>As the design of this application is focused to answer the questions proposed before; first it is defined a list of the specific functional requirements that the application should fulfil. This list is corresponds to the data and task abstractions and the different visualization methods and interaction levels.</p>
 
@@ -103,34 +180,34 @@ The dataset is provided in JSON format and it includes some interesting features
   * Data explorer: It can be accessed through the top navigation bar and shows a table with more detailed information.
 </code></pre>
 
-<h5>
-<a id="components-description" class="anchor" href="#components-description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Components description</h5>
+<h3 id="Components-description">
+<a id="components-description-" class="anchor" href="#components-description-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Components description </h3>
 
 <p>In this section it is described the main components of the application and the different use cases and tasks that a user could perform to answer the proposed questions.</p>
 
-<h6>
-<a id="interactive-map" class="anchor" href="#interactive-map" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Interactive map</h6>
+<h3 id="Interactive-map">
+<a id="interactive-map-" class="anchor" href="#interactive-map-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Interactive map </h3>
 
 <p>The interactive map shows a map with the data location. It can be navigated and zoomed to filter and show an interesting area.</p>
 
-<p><img src="https://lh3.googleusercontent.com/INX-iQDemJp78FkgywWUk2xR479cYTgWcGhbPIAlD3YTITa-s1yfIRk5zCQkxEtOWWH8M_9x9eU89luCM-FCBex19AoyS_wwJjPgHbQELc9Q3wUc7OcUi7ggAl4UmJTYzg" alt="Interactive map" title="Interactive map"></p>
+<p><img src="https://lh3.googleusercontent.com/INX-iQDemJp78FkgywWUk2xR479cYTgWcGhbPIAlD3YTITa-s1yfIRk5zCQkxEtOWWH8M_9x9eU89luCM-FCBex19AoyS_wwJjPgHbQELc9Q3wUc7OcUi7ggAl4UmJTYzg" alt="Alt text" title="Interactive map"></p>
 
-<h6>
-<a id="popup-message" class="anchor" href="#popup-message" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Popup message</h6>
+<h3 id="Popup-message">
+<a id="popup-message-" class="anchor" href="#popup-message-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Popup message </h3>
 
 <p>In the following picture it is shown an image with a zoomed region area showing in which the user has selected one of the business to show specific information such as the business categories that this business belongs to with the stars score and number of reviews.</p>
 
 <p><img src="https://lh6.googleusercontent.com/4TTe09UIbThvBJMcdhlZFM70qXwOYL47El5fvgjvMnTwUatO0gv_rkmxSTmn0QVoD8HTJN3z8ZYmpLbbiFnwso2ej7WZk7pfHKtTitzMkVxf4ktz0Z1g_3Dd0xCkSuLDnw" alt="Alt text" title="Popup message"></p>
 
-<h5>
-<a id="business-explorer" class="anchor" href="#business-explorer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Business explorer</h5>
+<h3 id="Business-explorer">
+<a id="business-explorer-" class="anchor" href="#business-explorer-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Business explorer </h3>
 
 <p>The business explorer allows the user to select interesting information and filter data. It is divided in two main parts: business explorer and filter options.</p>
 
 <p>Between the different filter options, it is allowed to show the currently open business that could be very interesting if it is compared with the closed business, for example to know how many stars had a business already closed in this area.This component also offers the possibility to restrict the data to show only the most ranking business with the minimum review number and the minimum stars sliders</p>
 
-<h5>
-<a id="graph-summary" class="anchor" href="#graph-summary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Graph summary</h5>
+<h3 id="Graph-summary">
+<a id="graph-summary-" class="anchor" href="#graph-summary-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Graph summary </h3>
 
 <p>The graph summary is an absolute panel displayed above the interactive map that offers different analytical visualization options such as bar chart, scatter plot and a bar chart summary of the current states.</p>
 
@@ -145,8 +222,8 @@ In this figure it is shown also one the filtering options that allows the chart 
 
 <p><img src="https://lh3.googleusercontent.com/WkCW5SnWbGPexISTRrWOpiCRYshJZC4pb7O2h-_cpwEbLMrZACqXTk-5KjtaG_SUwECqgdym95fAfrTpYsyaKc3luzwbQZVAei-Ay9m20qz7tf0ynAm5YRDogffrlWo_0A" alt="Alt text" title="Graph summary"></p>
 
-<h5>
-<a id="data-explorer" class="anchor" href="#data-explorer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data explorer</h5>
+<h3 id="Data-explorer">
+<a id="data-explorer-" class="anchor" href="#data-explorer-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data explorer </h3>
 
 <p>The data explorer is a table that show more detailed information of each of the states, it allows also to filter information by location and state or given the maximum and minimum score.</p>
 
@@ -156,11 +233,11 @@ In this figure it is shown also one the filtering options that allows the chart 
 
 <p><img src="https://lh5.googleusercontent.com/NseXxvo6XUqXGw6RactJKetsFwsuiXLRWZpGZ0ZLDkjY-qiM_toeQQeYtG0BGnVKBNNtsM16B05DDDippGuEk21k2wbUiQCa2eg-JByH2i-ZyNWcWR_SK1ll1uhDeLXXIA" alt="Alt text" title="Go task"></p>
 
-<h3>
-<a id="functional-requirements-definition" class="anchor" href="#functional-requirements-definition" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Functional requirements definition</h3>
+<h2 id="Functional-requirements-definition">
+<a id="functional-requirements-definition-" class="anchor" href="#functional-requirements-definition-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Functional requirements definition </h2>
 
-<h5>
-<a id="data-and-task-abstractions" class="anchor" href="#data-and-task-abstractions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data and task abstractions</h5>
+<h3 id="Data-and-task-abstractions">
+<a id="data-and-task-abstractions-" class="anchor" href="#data-and-task-abstractions-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data and task abstractions </h3>
 
 <p>The data that should be visualized in this application is extracted from the questions proposed before and ordered by the frequency of appearance in the questions:</p>
 
@@ -202,8 +279,8 @@ In this figure it is shown also one the filtering options that allows the chart 
 </li>
 </ul>
 
-<h5>
-<a id="interaction-and-visual-encoding" class="anchor" href="#interaction-and-visual-encoding" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Interaction and visual encoding</h5>
+<h3 id="Interaction-and-visual-encoding">
+<a id="interaction-and-visual-encoding-" class="anchor" href="#interaction-and-visual-encoding-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Interaction and visual encoding </h3>
 
 <p>The main visualization methods identified that best answer the proposed questions are:</p>
 
@@ -257,45 +334,45 @@ In this figure it is shown also one the filtering options that allows the chart 
 </li>
 </ul>
 
-<h3>
-<a id="development" class="anchor" href="#development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development</h3>
+<h2 id="Development">
+<a id="development-" class="anchor" href="#development-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development </h2>
 
 <p>The development of this application has followed the following stages:</p>
 
-<h5>
-<a id="0--research-of-the-available-tools-to-develop-the-project" class="anchor" href="#0--research-of-the-available-tools-to-develop-the-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>0- Research of the available tools to develop the project</h5>
+<h4>
+<a id="0--research-of-the-available-tools-to-develop-the-project" class="anchor" href="#0--research-of-the-available-tools-to-develop-the-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>0- Research of the available tools to develop the project</h4>
 
 <p>The project has been developed in the R programming language with the shiny library. Nevertheless, this application has made use of other libraries such as leaflet library in the implementation of the interactive map with the clustering option and the plotly library in the development of the charts of the graphics summary absolute panel.</p>
 
-<h5>
-<a id="1--data-preprocessing-to-get-the-data-model" class="anchor" href="#1--data-preprocessing-to-get-the-data-model" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1- Data Preprocessing to get the data model</h5>
+<h4>
+<a id="1--data-preprocessing-to-get-the-data-model" class="anchor" href="#1--data-preprocessing-to-get-the-data-model" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1- Data Preprocessing to get the data model</h4>
 
 <p>The source code that corresponds to this part it is located in the DataPreprocessing folder and it has to be launched before the application starts.</p>
 
 <p>As the most of the application it is done with the business data, for testing purposes it recommended only run the part associated to clean and load this data. Only it is required to load the reviews for the calculate the ranking difference.
 The phase could be subdivided in the following stages:</p>
 
-<h6>
-<a id="11-data-collection" class="anchor" href="#11-data-collection" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.1. Data collection</h6>
+<h5>
+<a id="11-data-collection" class="anchor" href="#11-data-collection" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.1. Data collection</h5>
 
 <p>The data used for the development of this application is freely downloaded from the webpage <a href="http://www.yelp.com/dataset_challenge">http://www.yelp.com/dataset_challenge</a>.</p>
 
-<h6>
-<a id="12-transform-json-and-load-the-data-in-r" class="anchor" href="#12-transform-json-and-load-the-data-in-r" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.2. Transform json and load the data in R</h6>
+<h5>
+<a id="12-transform-json-and-load-the-data-in-r" class="anchor" href="#12-transform-json-and-load-the-data-in-r" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.2. Transform json and load the data in R</h5>
 
 <p>For this purpose I used the library jsonlite to read and save in R the data and convert it into data.frames objects. Nevertheless, in the case of the reviews data set it is also required a compression and reduction of the dataset due to huge volume of text data.</p>
 
-<h6>
-<a id="13-clean-and-filter-the-data" class="anchor" href="#13-clean-and-filter-the-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.3. Clean and filter the data</h6>
+<h5>
+<a id="13-clean-and-filter-the-data" class="anchor" href="#13-clean-and-filter-the-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.3. Clean and filter the data</h5>
 
 <p>In the cleaning data process, I transformed most of the variables with NA value into 0 or 0:00 in case of hours. This allows me to visualize these data without losing the lost of information knowledge in some cases.
 To visualize the data and locate it in the map, it is also extracted the zip_code from the business dataset.</p>
 
-<h5>
-<a id="2--ui---view-development" class="anchor" href="#2--ui---view-development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2- UI - View development</h5>
+<h4>
+<a id="2--ui---view-development" class="anchor" href="#2--ui---view-development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2- UI - View development</h4>
 
-<h6>
-<a id="21-composition-and-development-of-the-different-widgets-in-the-uir-file" class="anchor" href="#21-composition-and-development-of-the-different-widgets-in-the-uir-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.1. Composition and development of the different widgets in the ui.R file</h6>
+<h5>
+<a id="21-composition-and-development-of-the-different-widgets-in-the-uir-file" class="anchor" href="#21-composition-and-development-of-the-different-widgets-in-the-uir-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.1. Composition and development of the different widgets in the ui.R file</h5>
 
 <p>The UI is composed of two main views separate with a navbar and the tabPanel object, organized hierarchically with the composition of the following elements:</p>
 
@@ -317,16 +394,16 @@ To visualize the data and locate it in the map, it is also extracted the zip_cod
 </li>
 </ul>
 
-<h5>
-<a id="3--ui---controller-development" class="anchor" href="#3--ui---controller-development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3- UI - Controller development</h5>
+<h4>
+<a id="3--ui---controller-development" class="anchor" href="#3--ui---controller-development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3- UI - Controller development</h4>
 
 <p>This phase correspond to the development of the server side of the graphical interface server.R, it is responsible to perform the next two main tasks:</p>
 
-<h6>
-<a id="31-development-of-the-logic-associated-to-each-view" class="anchor" href="#31-development-of-the-logic-associated-to-each-view" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.1. Development of the logic associated to each view</h6>
+<h5>
+<a id="31-development-of-the-logic-associated-to-each-view" class="anchor" href="#31-development-of-the-logic-associated-to-each-view" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.1. Development of the logic associated to each view</h5>
 
-<h6>
-<a id="32-coordination-of-each-view-to-create-an-integrate-and-reactive-design" class="anchor" href="#32-coordination-of-each-view-to-create-an-integrate-and-reactive-design" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2. Coordination of each view to create an integrate and reactive design</h6>
+<h5>
+<a id="32-coordination-of-each-view-to-create-an-integrate-and-reactive-design" class="anchor" href="#32-coordination-of-each-view-to-create-an-integrate-and-reactive-design" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2. Coordination of each view to create an integrate and reactive design</h5>
 
 <p>The source code of this part it is composed of the following shiny elements to maintain synchronized the different views:</p>
 
@@ -340,10 +417,15 @@ To visualize the data and locate it in the map, it is also extracted the zip_cod
 <li>Common functions that performs common calculations</li>
 </ol>
 
-<h2>
-<a id="contact-information" class="anchor" href="#contact-information" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contact information</h2>
+<h2 id="Contact-information">
+<a id="contact-information-" class="anchor" href="#contact-information-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contact information </h2>      
 
 <p>Yolanda de la Hoz Simón. <a href="mailto:yolanda93h@gmail.com">yolanda93h@gmail.com</a></p>
+
+<h2 id="Web-page">
+<a id="web-page-" class="anchor" href="#web-page-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Web page </h2> 
+
+<p><a href="https://yolanda93.github.io/yelp_challenge_ui/">https://yolanda93.github.io/yelp_challenge_ui/</a></p>
         </section>
 
         <aside id="sidebar">
