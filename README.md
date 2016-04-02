@@ -47,6 +47,25 @@ runUrl("https://github.com/yolanda93/yelp_challenge_ui/archive/master.tar.gz")
 runUrl("https://github.com/yolanda93/yelp_challenge_ui/archive/master.zip")
 ```
 
+Or you can clone the git repository, then use `runApp()`:
+
+```R
+# First clone the repository with git. If you have cloned it into
+# ~/yelp_challenge_ui, first go to that directory, then use runApp().
+setwd("~/yelp_challenge_ui")
+runApp()
+```
+
+
+To run a Shiny app from a subdirectory in the repo or zip file, you can use the `subdir` argument. This repository happens to contain another copy of the app in `inst/shinyapp/`.
+
+```R
+runGitHub("yelp_challenge_ui", "yolanda93", subdir = "inst/shinyapp/")
+
+runUrl("https://github.com/yolanda93/yelp_challenge_ui/archive/master.tar.gz",
+  subdir = "inst/shinyapp/")
+```
+
 <h2 id="Dataset-description">Dataset description </h2>
 
 The dataset provided by Yelp (http://www.yelp.com/dataset_challenge) is based on 61 million reviews with the aim to help people find the most relevant businesses for everyday needs.
@@ -270,23 +289,8 @@ The source code of this part it is composed of the following shiny elements to m
 6. Observers to update the data explorer according to the filter options
 7. Common functions that performs common calculations
 
-<h2 id="Example-of-execution">Example of execution </h2> 
-
-There are many ways to download and run it:
-
-```R
-library(shiny)
-
-# Easiest way is to use runGitHub
-runGitHub("yelp_challenge_ui", "yolanda93")
-
-# Run a tar or zip file directly
-runUrl("https://github.com/yolanda93/yelp_challenge_ui/archive/master.tar.gz")
-runUrl("https://github.com/yolanda93/yelp_challenge_ui/archive/master.zip")
-```
 
 <h2 id="Contact-information">Contact information </h2>      
-## Contact information
 
 Yolanda de la Hoz Simón. yolanda93h@gmail.com
 
