@@ -1,4 +1,4 @@
-Yelp Challenge UI
+Yelp Challenge UI (http://yolanda93.github.io/yelp_challenge_ui/)
 ===============================================================================
 
 [![Build
