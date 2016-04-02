@@ -1,0 +1,33 @@
+Package: yelp_challenge_ui
+Title: Data Analytics and Visualization with Yelp dataset. Yelp is a service that allows users to review businesses and check other users reviews.
+Version: 0.5.2
+Authors@R: person("Yolanda", "de la Hoz Simón", email = "yolanda93h@gmail.com",
+    role = c("aut", "cre"))
+Description: The aim of this project is the design and development of an interactive visual application
+            designed to respond the most relevant questions in the small businesses domain taking advantage
+            of the Yelp! business reviews.
+URL: https://github.com/yolanda93/yelp_challenge_ui
+BugReports: https://github.com/yolanda93/yelp_challenge_ui/issues
+Depends:
+    R (>= 3.1.0)
+Imports:
+    shiny (>= 0.11.1),
+    leaflet,
+    plotly,
+    RColorBrewer,
+    stats,
+    scales,
+    lattice,
+    dplyr,
+    magrittr
+Suggests:
+    knitr (>= 1.7),
+    rmarkdown,
+    rstudioapi (>= 0.5),
+    testthat (>= 0.9.1),
+    V8 (>= 0.6)
+License: GNU + file LICENSE
+SystemRequirements: pandoc with https support
+LazyData: true
+VignetteBuilder: knitr
+RoxygenNote: 5.0.1
