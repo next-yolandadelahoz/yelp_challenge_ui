@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Yelp challenge ui by yolanda93</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Yelp challenge ui</h1>
+        <h2>Data Analytics and Visualization with Yelp dataset. Yelp is a service that allows users to review businesses and check other users reviews. </h2>
+        <a href="https://github.com/yolanda93/yelp_challenge_ui" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="yelp-challenge-ui" class="anchor" href="#yelp-challenge-ui" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Yelp Challenge UI</h1>
+
+<p>The aim of this project is the design and development of an interactive visual application designed to respond the most relevant questions in the small businesses domain taking advantage of the Yelp! business reviews.</p>
+
+<p><img src="https://lh5.googleusercontent.com/rML-OlpdoI6ZeUgMnfnYyFkYs7sEv2Kh5YnkH2AyTpIjHQB0WrudxJDmDathTPC79d5VLWtnx31E7AV0lfekWq6wdeWoTxLNXb7tQbr8CfazBI1kyMIQwvE1mgbCb52wqQ" alt="Application design"></p>
+
+<p>The dataset is provided by Yelp, a service that allows users to review businesses and check other users reviews. They provide a subset of their data in a challenge (which is in its 6th round) to promote the development of innovative visual analytic tools. This dataset contains geolocalized information about businesses, users reviews and scores, etc. Many different analyses could be carried out on these data and they support many of the encoding options seen in class (cartographic arrangement, filtering of data, etc.).</p>
+
+<p>The data can be downloaded from <a href="http://www.yelp.com/dataset_challenge">http://www.yelp.com/dataset_challenge</a>.</p>
+
+<h2>
+<a id="dataset-description" class="anchor" href="#dataset-description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dataset description</h2>
+
+<p>The dataset provided by Yelp (<a href="http://www.yelp.com/dataset_challenge">http://www.yelp.com/dataset_challenge</a>) is based on 61 million reviews with the aim to help people find the most relevant businesses for everyday needs.
+The dataset is provided in JSON format and it includes some interesting features described below.</p>
+
+<ul>
+<li>Business: Localization, business category, reviews, starts and open hours.</li>
+<li>Review: Business, users, starts, review text, date and votes.</li>
+<li>User: User, reviews, votes, average starts, friends, antiquity, compliments and fans.</li>
+<li>Check In: Business and check in info (hours).</li>
+<li>Tip: Tip text, business, user, date and likes.</li>
+</ul>
+
+<h2>
+<a id="application-domain" class="anchor" href="#application-domain" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Application domain</h2>
+
+<p>In this section, it is identified some relevant questions that the application should solve with the purpose of have a user-centered design that better fix the user requirements.</p>
+
+<p><em>Business owners</em>
+<em>Need</em>: Improve the quality of their services → Offer better services.
+<em>Questions</em>:</p>
+
+<pre><code>    1. Which is the average rating that users give to my business?
+    2. Is the number of hours that a business open affecting their ranking mark?
+    3. Is the location of my business affecting the ranking mark?
+    4. Is my business getting more users depending of the season of the year?
+    5. Is the number of services that my business offers affecting their ranking mark?
+    6. Predict when a business will be more busy.
+</code></pre>
+
+<p><em>Customers</em>
+<em>Need</em>: Look up the better business according to their preferences.
+<em>Questions</em>:</p>
+
+<pre><code>   1. What are the top ranked (restaurants, shops...) in my location?
+   2. What of these business open today?
+   3. Get the top ranking business according to: age of the reviewers, type of business, open_hours and localization.
+</code></pre>
+
+<p>In the challenge webpage it is also proposed some interesting questions related with some data science challenges and business needs, among which I’ve selected the following questions to be considered:</p>
+
+<pre><code>  1. How much of a business success is really just location, location, location?
+  2. Are there more reviews for sports bars on major game days and if so, could you predict that?
+  3. How much influence does my social circle have on my business choices and my ratings?
+  4. What cuisines are Yelpers raving about in these different countries?
+  5. In which countries are Yelpers sticklers for service quality?
+</code></pre>
+
+<p>The questions (with the associated underlying variables) that I will develop corresponds to the most common needs of two targeted users: business owners and customers.</p>
+
+<h2>
+<a id="application-design" class="anchor" href="#application-design" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Application design</h2>
+
+<p>As the design of this application is focused to answer the questions proposed before; first it is defined a list of the specific functional requirements that the application should fulfil. This list is corresponds to the data and task abstractions and the different visualization methods and interaction levels.</p>
+
+<p>The application design is based in the following four main parts:</p>
+
+<pre><code>  * Interactive map: It is the main layout of the application.
+  * Business explorer: On the right site, it is an absolute panel that gives the user different exploration options.
+  * Graph summary: On the lower left side, that shows the different chart options (Bar chart, scatter plot and chart summary).
+  * Data explorer: It can be accessed through the top navigation bar and shows a table with more detailed information.
+</code></pre>
+
+<h5>
+<a id="components-description" class="anchor" href="#components-description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Components description</h5>
+
+<p>In this section it is described the main components of the application and the different use cases and tasks that a user could perform to answer the proposed questions.</p>
+
+<h6>
+<a id="interactive-map" class="anchor" href="#interactive-map" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Interactive map</h6>
+
+<p>The interactive map shows a map with the data location. It can be navigated and zoomed to filter and show an interesting area.</p>
+
+<p><img src="https://lh3.googleusercontent.com/INX-iQDemJp78FkgywWUk2xR479cYTgWcGhbPIAlD3YTITa-s1yfIRk5zCQkxEtOWWH8M_9x9eU89luCM-FCBex19AoyS_wwJjPgHbQELc9Q3wUc7OcUi7ggAl4UmJTYzg" alt="Interactive map" title="Interactive map"></p>
+
+<h6>
+<a id="popup-message" class="anchor" href="#popup-message" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Popup message</h6>
+
+<p>In the following picture it is shown an image with a zoomed region area showing in which the user has selected one of the business to show specific information such as the business categories that this business belongs to with the stars score and number of reviews.</p>
+
+<p><img src="https://lh6.googleusercontent.com/4TTe09UIbThvBJMcdhlZFM70qXwOYL47El5fvgjvMnTwUatO0gv_rkmxSTmn0QVoD8HTJN3z8ZYmpLbbiFnwso2ej7WZk7pfHKtTitzMkVxf4ktz0Z1g_3Dd0xCkSuLDnw" alt="Alt text" title="Popup message"></p>
+
+<h5>
+<a id="business-explorer" class="anchor" href="#business-explorer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Business explorer</h5>
+
+<p>The business explorer allows the user to select interesting information and filter data. It is divided in two main parts: business explorer and filter options.</p>
+
+<p>Between the different filter options, it is allowed to show the currently open business that could be very interesting if it is compared with the closed business, for example to know how many stars had a business already closed in this area.This component also offers the possibility to restrict the data to show only the most ranking business with the minimum review number and the minimum stars sliders</p>
+
+<h5>
+<a id="graph-summary" class="anchor" href="#graph-summary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Graph summary</h5>
+
+<p>The graph summary is an absolute panel displayed above the interactive map that offers different analytical visualization options such as bar chart, scatter plot and a bar chart summary of the current states.</p>
+
+<p><img src="https://lh5.googleusercontent.com/1-1lJl_RgsETTN-9t6anr_D8p4ien465P5CRcip9AE7TEYUxBoTzCLZA_itW2Q6aVfSLodNLhWCpeFH08dTGzYxJOWUAmfag5vxUyHlZj0xjDYDeK8zKETP6MnFr763YOQ" alt="Alt text" title="Graph summary"></p>
+
+<p>The following image shows a scatter plot of the current selected data, this visualization allows to find trends and outlier easily. For example in this figure we can visualize the stars and number of reviews for that each stars has with some inline gaps that indicates that most of the rankings are done with no more of 2500 reviews.</p>
+
+<p><img src="https://lh3.googleusercontent.com/o4Cx2i-gUsLTQ7gPr5lR0taR1TyTJ94Eqrt1l0qqGH6zxro4qtNI2iyiISaSeiUUovdzODjWyYTcQXm9DHa40U0iEFPM6YxUoFsJFHWttSLRWBBzIsxZyxSsiLIxviHVPw" alt="Alt text" title="Graph summary"></p>
+
+<p>The following image shows the states summary tab of the absolute panel, this view shows a summary of the selected variable in the business explorer aggregated by each the state that are within the visualization area. It is very interesting because it help us to focalize the attention for example only the areas with more number of reviews.
+In this figure it is shown also one the filtering options that allows the chart selecting the interesting region area to zoom and visualize this area.</p>
+
+<p><img src="https://lh3.googleusercontent.com/WkCW5SnWbGPexISTRrWOpiCRYshJZC4pb7O2h-_cpwEbLMrZACqXTk-5KjtaG_SUwECqgdym95fAfrTpYsyaKc3luzwbQZVAei-Ay9m20qz7tf0ynAm5YRDogffrlWo_0A" alt="Alt text" title="Graph summary"></p>
+
+<h5>
+<a id="data-explorer" class="anchor" href="#data-explorer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data explorer</h5>
+
+<p>The data explorer is a table that show more detailed information of each of the states, it allows also to filter information by location and state or given the maximum and minimum score.</p>
+
+<p><img src="https://lh3.googleusercontent.com/LWn7_S0XReHqHSoDkzmp4VtBeD9WovhcxguEHUvtyVNiitDjyYx9LncZR93gLVtBIRHOD59zLRainvnp3XkL8eQjNAkARrd3EWDwsHQUaKOiZI6faXQ3D84SStrN9DWD_w" alt="Alt text" title="Data explorer"></p>
+
+<p>The following image shows the possibility to search in this data explorer the most ranked city and then navigate to this city through the Action column.</p>
+
+<p><img src="https://lh5.googleusercontent.com/NseXxvo6XUqXGw6RactJKetsFwsuiXLRWZpGZ0ZLDkjY-qiM_toeQQeYtG0BGnVKBNNtsM16B05DDDippGuEk21k2wbUiQCa2eg-JByH2i-ZyNWcWR_SK1ll1uhDeLXXIA" alt="Alt text" title="Go task"></p>
+
+<h3>
+<a id="functional-requirements-definition" class="anchor" href="#functional-requirements-definition" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Functional requirements definition</h3>
+
+<h5>
+<a id="data-and-task-abstractions" class="anchor" href="#data-and-task-abstractions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data and task abstractions</h5>
+
+<p>The data that should be visualized in this application is extracted from the questions proposed before and ordered by the frequency of appearance in the questions:</p>
+
+<ul>
+<li>ranking mark</li>
+<li>average rating</li>
+<li>review counts</li>
+<li>localization</li>
+<li>business category</li>
+<li>number of hours open</li>
+<li>season of the year</li>
+<li>number of services</li>
+</ul>
+
+<p>For the definition of the task abstractions have been considered the following main tasks:</p>
+
+<ul>
+<li>Express geospatial positions
+        Navigation and interaction to show information from a specific position</li>
+<li>Find and locate outliers
+        Offer different filtering options
+
+<ul>
+<li>Filter 1: Location area</li>
+<li>Filter 2: ranking mark</li>
+<li>Filter 3: review counts</li>
+<li>Filter 4: users popularity</li>
+<li>Filter 5: open /closed business</li>
+<li>Filter 6: state, country, business name and zipcode.</li>
+<li>Information aggregation
+    Cluster 1: ranking mark
+    Cluster 2: review counts
+    Cluster 3: ranking mark difference between current stars and review stars</li>
+<li>Summarize to offer a general view of the current data
+    Summary: average rating by states</li>
+<li>Data exploration
+    Ordered table: show raking details</li>
+</ul>
+</li>
+</ul>
+
+<h5>
+<a id="interaction-and-visual-encoding" class="anchor" href="#interaction-and-visual-encoding" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Interaction and visual encoding</h5>
+
+<p>The main visualization methods identified that best answer the proposed questions are:</p>
+
+<ul>
+<li>
+<p>Bar chart</p>
+
+<ul>
+<li>It helps to lookup and compare values.</li>
+<li>It shows one quantitative value attribute and one categorical value attribute.</li>
+</ul>
+</li>
+<li>
+<p>Histogram</p>
+
+<ul>
+<li>It helps to find trends, outliers, distribution, correlation and locate clusters.</li>
+<li>It shows two quantitative values attributes: latitude and longitude to express location in a map.  Two categorical key attributes:
+
+<ul>
+<li>Color: stars mark /review_count/ stars difference.</li>
+<li>Size: stars mark /review_count/ stars difference.</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li>Interactive map
+
+<ul>
+<li> Used to locate and filter per region data.</li>
+<li> It allows to identify clusters, lookup and compare values, outliers and find trends.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>The different interaction methods with each of the above visualization methods are enclosed within the following tasks performed in the main application area:</p>
+
+<ul>
+<li>Views synchronization
+
+<ul>
+<li>Go task</li>
+<li>Selection</li>
+<li>Zoom</li>
+<li>Map navigation</li>
+<li>Chart navigation</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development</h3>
+
+<p>The development of this application has followed the following stages:</p>
+
+<h5>
+<a id="0--research-of-the-available-tools-to-develop-the-project" class="anchor" href="#0--research-of-the-available-tools-to-develop-the-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>0- Research of the available tools to develop the project</h5>
+
+<p>The project has been developed in the R programming language with the shiny library. Nevertheless, this application has made use of other libraries such as leaflet library in the implementation of the interactive map with the clustering option and the plotly library in the development of the charts of the graphics summary absolute panel.</p>
+
+<h5>
+<a id="1--data-preprocessing-to-get-the-data-model" class="anchor" href="#1--data-preprocessing-to-get-the-data-model" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1- Data Preprocessing to get the data model</h5>
+
+<p>The source code that corresponds to this part it is located in the DataPreprocessing folder and it has to be launched before the application starts.</p>
+
+<p>As the most of the application it is done with the business data, for testing purposes it recommended only run the part associated to clean and load this data. Only it is required to load the reviews for the calculate the ranking difference.
+The phase could be subdivided in the following stages:</p>
+
+<h6>
+<a id="11-data-collection" class="anchor" href="#11-data-collection" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.1. Data collection</h6>
+
+<p>The data used for the development of this application is freely downloaded from the webpage <a href="http://www.yelp.com/dataset_challenge">http://www.yelp.com/dataset_challenge</a>.</p>
+
+<h6>
+<a id="12-transform-json-and-load-the-data-in-r" class="anchor" href="#12-transform-json-and-load-the-data-in-r" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.2. Transform json and load the data in R</h6>
+
+<p>For this purpose I used the library jsonlite to read and save in R the data and convert it into data.frames objects. Nevertheless, in the case of the reviews data set it is also required a compression and reduction of the dataset due to huge volume of text data.</p>
+
+<h6>
+<a id="13-clean-and-filter-the-data" class="anchor" href="#13-clean-and-filter-the-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.3. Clean and filter the data</h6>
+
+<p>In the cleaning data process, I transformed most of the variables with NA value into 0 or 0:00 in case of hours. This allows me to visualize these data without losing the lost of information knowledge in some cases.
+To visualize the data and locate it in the map, it is also extracted the zip_code from the business dataset.</p>
+
+<h5>
+<a id="2--ui---view-development" class="anchor" href="#2--ui---view-development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2- UI - View development</h5>
+
+<h6>
+<a id="21-composition-and-development-of-the-different-widgets-in-the-uir-file" class="anchor" href="#21-composition-and-development-of-the-different-widgets-in-the-uir-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.1. Composition and development of the different widgets in the ui.R file</h6>
+
+<p>The UI is composed of two main views separate with a navbar and the tabPanel object, organized hierarchically with the composition of the following elements:</p>
+
+<ul>
+<li>Data Explorer
+
+<ul>
+<li>selectInput (states, cities, zipcode, min and max score)</li>
+<li>dataTableOutput</li>
+</ul>
+</li>
+<li>Interactive Map
+
+<ul>
+<li>leafletOutput (Interactive map)</li>
+<li>absolutePanel (Graphs summary)</li>
+<li>absolutePanel (Business explorer)</li>
+</ul>
+</li>
+</ul>
+
+<h5>
+<a id="3--ui---controller-development" class="anchor" href="#3--ui---controller-development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3- UI - Controller development</h5>
+
+<p>This phase correspond to the development of the server side of the graphical interface server.R, it is responsible to perform the next two main tasks:</p>
+
+<h6>
+<a id="31-development-of-the-logic-associated-to-each-view" class="anchor" href="#31-development-of-the-logic-associated-to-each-view" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.1. Development of the logic associated to each view</h6>
+
+<h6>
+<a id="32-coordination-of-each-view-to-create-an-integrate-and-reactive-design" class="anchor" href="#32-coordination-of-each-view-to-create-an-integrate-and-reactive-design" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2. Coordination of each view to create an integrate and reactive design</h6>
+
+<p>The source code of this part it is composed of the following shiny elements to maintain synchronized the different views:</p>
+
+<ol>
+<li>A reactive expression that returns the set of business that are in bounds right now</li>
+<li>A reactive expression that filters the business, returning a data frame</li>
+<li>Render plots to show a bar chart, a histogram and a scatterplot</li>
+<li>An observer responsible for maintaining the circles and legend, according to the variables the user has chosen to map to color and size</li>
+<li>An observer to show a popup with business info when the map is clicked</li>
+<li>Observers to update the data explorer according to the filter options</li>
+<li>Common functions that performs common calculations</li>
+</ol>
+
+<h2>
+<a id="contact-information" class="anchor" href="#contact-information" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contact information</h2>
+
+<p>Yolanda de la Hoz Simón. <a href="mailto:yolanda93h@gmail.com">yolanda93h@gmail.com</a></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/yolanda93/yelp_challenge_ui/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/yolanda93/yelp_challenge_ui/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/yolanda93/yelp_challenge_ui"></a> is maintained by <a href="https://github.com/yolanda93">yolanda93</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
