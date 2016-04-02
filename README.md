@@ -82,9 +82,9 @@ The dataset is provided in JSON format and it includes some interesting features
 
 In this section, it is identified some relevant questions that the application should solve with the purpose of have a user-centered design that better fix the user requirements.
 
-*Business owners*
-*Need*: Improve the quality of their services → Offer better services.
-*Questions*:
+**Business owners**
+**Need** : Improve the quality of their services → Offer better services.
+**Questions** :
 
         1. Which is the average rating that users give to my business?
         2. Is the number of hours that a business open affecting their ranking mark?
@@ -93,9 +93,9 @@ In this section, it is identified some relevant questions that the application s
         5. Is the number of services that my business offers affecting their ranking mark?
         6. Predict when a business will be more busy.
 
-*Customers*
-*Need*: Look up the better business according to their preferences.
-*Questions*:
+**Customers**
+**Need**: Look up the better business according to their preferences.
+**Questions**:
 
        1. What are the top ranked (restaurants, shops...) in my location?
        2. What of these business open today?
