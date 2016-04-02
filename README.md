@@ -254,6 +254,20 @@ The source code of this part it is composed of the following shiny elements to m
 6. Observers to update the data explorer according to the filter options
 7. Common functions that performs common calculations
 
+<h2 id="Example-of-execution">Example of execution </h2> 
+
+There are many ways to download and run it:
+
+library(shiny)
+
+# Easiest way is to use runGitHub
+runGitHub("yelp_challenge_ui", "yolanda93")
+
+# Run a tar or zip file directly
+runUrl("https://github.com/yolanda93/yelp_challenge_ui/archive/master.tar.gz")
+runUrl("https://github.com/yolanda93/yelp_challenge_ui/archive/master.zip")
+
+
 <h2 id="Contact-information">Contact information </h2>      
 ## Contact information
 
