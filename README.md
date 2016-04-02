@@ -15,7 +15,7 @@ The data can be downloaded from http://www.yelp.com/dataset_challenge.
 Table of contents
 =================
 
--   [Dataset description](#demos)
+-   [Dataset description](#Dataset-description)
 -   [Application domain](#Application domain)
 -   [Application design](#overview-main)
     -   [Components description](#Components description)
@@ -31,7 +31,7 @@ Table of contents
 -   [Contact information](#Contact information)
 -   [Web page](#Web page)
 
-## Dataset description
+<h2 id="Dataset-description"> Dataset description </h2>
 
 The dataset provided by Yelp (http://www.yelp.com/dataset_challenge) is based on 61 million reviews with the aim to help people find the most relevant businesses for everyday needs.
 The dataset is provided in JSON format and it includes some interesting features described below.
