@@ -1,6 +1,8 @@
 # Yelp Challenge UI
 
 The aim of this project is the design and development of an interactive visual application designed to respond the most relevant questions in the small businesses domain taking advantage of the Yelp! business reviews.
+
+![Alt text] (https://lh5.googleusercontent.com/rML-OlpdoI6ZeUgMnfnYyFkYs7sEv2Kh5YnkH2AyTpIjHQB0WrudxJDmDathTPC79d5VLWtnx31E7AV0lfekWq6wdeWoTxLNXb7tQbr8CfazBI1kyMIQwvE1mgbCb52wqQ "General Design")
   
 The dataset is provided by Yelp, a service that allows users to review businesses and check other users reviews. They provide a subset of their data in a challenge (which is in its 6th round) to promote the development of innovative visual analytic tools. This dataset contains geolocalized information about businesses, users reviews and scores, etc. Many different analyses could be carried out on these data and they support many of the encoding options seen in class (cartographic arrangement, filtering of data, etc.).
 
@@ -17,19 +19,49 @@ The dataset is provided in JSON format and it includes some interesting features
    * Check In: Business and check in info (hours).
    * Tip: Tip text, business, user, date and likes.
 
+## Application domain
+
+In this section, it is identified some relevant questions that the application should solve with the purpose of have a user-centered design that better fix the user requirements.
+
+*Business owners*
+*Need*: Improve the quality of their services → Offer better services.
+*Questions*:
+
+        1. Which is the average rating that users give to my business?
+        2. Is the number of hours that a business open affecting their ranking mark?
+        3. Is the location of my business affecting the ranking mark?
+        4. Is my business getting more users depending of the season of the year?
+        5. Is the number of services that my business offers affecting their ranking mark?
+        6. Predict when a business will be more busy.
+
+*Customers*
+*Need*: Look up the better business according to their preferences.
+*Questions*:
+
+       1. What are the top ranked (restaurants, shops...) in my location?
+       2. What of these business open today?
+       3. Get the top ranking business according to: age of the reviewers, type of business, open_hours and localization.
+
+In the challenge webpage it is also proposed some interesting questions related with some data science challenges and business needs, among which I’ve selected the following questions to be considered:
+
+      1. How much of a business success is really just location, location, location?
+      2. Are there more reviews for sports bars on major game days and if so, could you predict that?
+      3. How much influence does my social circle have on my business choices and my ratings?
+      4. What cuisines are Yelpers raving about in these different countries?
+      5. In which countries are Yelpers sticklers for service quality?
+
+The questions (with the associated underlying variables) that I will develop corresponds to the most common needs of two targeted users: business owners and customers.
+
 ## Application design
 
 As the design of this application is focused to answer the questions proposed before; first it is defined a list of the specific functional requirements that the application should fulfil. This list is corresponds to the data and task abstractions and the different visualization methods and interaction levels.
 
-![Alt text] (https://lh5.googleusercontent.com/rML-OlpdoI6ZeUgMnfnYyFkYs7sEv2Kh5YnkH2AyTpIjHQB0WrudxJDmDathTPC79d5VLWtnx31E7AV0lfekWq6wdeWoTxLNXb7tQbr8CfazBI1kyMIQwvE1mgbCb52wqQ "General Design")
+The application design is based in the following four main parts:
 
-                                                Figure 1. General design
-
-The Figure 1. shows a sample screen of the general design of the shiny application. Here it can be seen four main parts:
-      Interactive map: It is the main layout of the application.
-      Business explorer: On the right site, it is an absolute panel that gives the user different exploration options.
-      Graph summary: On the lower left side, that shows the different chart options (Bar chart, scatter plot and chart summary).
-      Data explorer: It can be accessed through the top navigation bar and shows a table with more detailed information.
+      * Interactive map: It is the main layout of the application.
+      * Business explorer: On the right site, it is an absolute panel that gives the user different exploration options.
+      * Graph summary: On the lower left side, that shows the different chart options (Bar chart, scatter plot and chart summary).
+      * Data explorer: It can be accessed through the top navigation bar and shows a table with more detailed information.
 
 ##### Components description
 
@@ -51,8 +83,6 @@ In the following picture it is shown an image with a zoomed region area showing 
 
 The business explorer allows the user to select interesting information and filter data. It is divided in two main parts: business explorer and filter options.
 
-![Alt text] (https://lh3.googleusercontent.com/lGR_Y_iKzA58nMpwAO8g1x9U73VJriO0z_1vqkOCQ_s_FmtUb5fQEJH2mIueCRhG0JfLdXn5-rFUjhQpQNEU8HHbwS_sTxauw7XZRJDBhCyZ08QflF6txWE8N3Fp2F6i2A "Business explorer")
-
 Between the different filter options, it is allowed to show the currently open business that could be very interesting if it is compared with the closed business, for example to know how many stars had a business already closed in this area.This component also offers the possibility to restrict the data to show only the most ranking business with the minimum review number and the minimum stars sliders
 
 ##### Graph summary
@@ -61,18 +91,11 @@ The graph summary is an absolute panel displayed above the interactive map that 
 
 ![Alt text] (https://lh5.googleusercontent.com/1-1lJl_RgsETTN-9t6anr_D8p4ien465P5CRcip9AE7TEYUxBoTzCLZA_itW2Q6aVfSLodNLhWCpeFH08dTGzYxJOWUAmfag5vxUyHlZj0xjDYDeK8zKETP6MnFr763YOQ "Graph summary")
 
-In the figures 9 and 10 are shown the synchronization between the business explorer, interactive map and the graphi summary panel. As it is selectionend one of the available categories it is changed the title and the data associated and as a result and update of all the views of the application.
-
-![Alt text] (https://lh5.googleusercontent.com/ANIYycP4XV7s-NkxwjMi4h0NQ-DETckv8gSSRaje2jUtAXSbbyuNmsMrMB-_EjWripTpSejAuKNeVHV59EuMCTZW7POTHV1J3jDroGwWgqBvWZ3UL1KM4EJ4pOOW-SaWIQ "Graph summary")
-
-
-![Alt text] (https://lh6.googleusercontent.com/O1S6socvjtfXlOPSnnC3Za7Dz8doh374H-B7P1xLKaDV8GMdcsbhYYjGR9peKfjLX_p-yl0dpEX8w4VQml91pp-kpToooQUadu-_5OlM5NYZ_YxgGPq0TIi8IWRY17K8Jw "Graph summary")
-
-The figure 11 shows a scatter plot of the current selected data, this visualization allows to find trends and outlier easily. For example in this figure we can visualize the stars and number of reviews for that each stars has with some inline gaps that indicates that most of the rankings are done with no more of 2500 reviews.
+The following image shows a scatter plot of the current selected data, this visualization allows to find trends and outlier easily. For example in this figure we can visualize the stars and number of reviews for that each stars has with some inline gaps that indicates that most of the rankings are done with no more of 2500 reviews.
 
 ![Alt text] (https://lh3.googleusercontent.com/o4Cx2i-gUsLTQ7gPr5lR0taR1TyTJ94Eqrt1l0qqGH6zxro4qtNI2iyiISaSeiUUovdzODjWyYTcQXm9DHa40U0iEFPM6YxUoFsJFHWttSLRWBBzIsxZyxSsiLIxviHVPw "Graph summary")
 
-The figure 12 shows the states summary tab of the absolute panel, this view shows a summary of the selected variable in the business explorer aggregated by each the state that are within the visualization area. It is very interesting because it help us to focalize the attention for example only the areas with more number of reviews.
+The following image shows the states summary tab of the absolute panel, this view shows a summary of the selected variable in the business explorer aggregated by each the state that are within the visualization area. It is very interesting because it help us to focalize the attention for example only the areas with more number of reviews.
 In this figure it is shown also one the filtering options that allows the chart selecting the interesting region area to zoom and visualize this area.
 
 ![Alt text] (https://lh3.googleusercontent.com/WkCW5SnWbGPexISTRrWOpiCRYshJZC4pb7O2h-_cpwEbLMrZACqXTk-5KjtaG_SUwECqgdym95fAfrTpYsyaKc3luzwbQZVAei-Ay9m20qz7tf0ynAm5YRDogffrlWo_0A "Graph summary")
@@ -84,7 +107,7 @@ The data explorer is a table that show more detailed information of each of the 
 ![Alt text] (https://lh3.googleusercontent.com/LWn7_S0XReHqHSoDkzmp4VtBeD9WovhcxguEHUvtyVNiitDjyYx9LncZR93gLVtBIRHOD59zLRainvnp3XkL8eQjNAkARrd3EWDwsHQUaKOiZI6faXQ3D84SStrN9DWD_w "Data explorer")
 
 
-The figure 13 shows the possibility to search in this data explorer the most ranked city and then navigate to this city through the Action column.
+The following image shows the possibility to search in this data explorer the most ranked city and then navigate to this city through the Action column.
 
 ![Alt text] (https://lh5.googleusercontent.com/NseXxvo6XUqXGw6RactJKetsFwsuiXLRWZpGZ0ZLDkjY-qiM_toeQQeYtG0BGnVKBNNtsM16B05DDDippGuEk21k2wbUiQCa2eg-JByH2i-ZyNWcWR_SK1ll1uhDeLXXIA "Go task")
 
@@ -93,6 +116,7 @@ The figure 13 shows the possibility to search in this data explorer the most ran
 ##### Data and task abstractions
 
 The data that should be visualized in this application is extracted from the questions proposed before and ordered by the frequency of appearance in the questions:
+
    * ranking mark
    * average rating
    * review counts
@@ -101,7 +125,9 @@ The data that should be visualized in this application is extracted from the que
    * number of hours open
    * season of the year
    * number of services
+  
 For the definition of the task abstractions have been considered the following main tasks:
+
   * Express geospatial positions
             Navigation and interaction to show information from a specific position
   * Find and locate outliers
@@ -126,83 +152,84 @@ For the definition of the task abstractions have been considered the following m
 The main visualization methods identified that best answer the proposed questions are:
 
    * Bar chart
-      It helps to lookup and compare values.
-      It shows one quantitative value attribute and one categorical value attribute.
+      * It helps to lookup and compare values.
+      * It shows one quantitative value attribute and one categorical value attribute.
 
    * Histogram
-      It helps to find trends, outliers, distribution, correlation and locate clusters.
-      It shows two quantitative values attributes: latitude and longitude to express location in a map.  Two categorical key attributes:
-            Color: stars mark /review_count/ stars difference.
-            Size: stars mark /review_count/ stars difference.
+      * It helps to find trends, outliers, distribution, correlation and locate clusters.
+      * It shows two quantitative values attributes: latitude and longitude to express location in a map.  Two categorical key attributes:
+           * Color: stars mark /review_count/ stars difference.
+           * Size: stars mark /review_count/ stars difference.
 
     * Interactive map
-      Used to locate and filter per region data.
-      It allows to identify clusters, lookup and compare values, outliers and find trends.
+       *  Used to locate and filter per region data.
+       *  It allows to identify clusters, lookup and compare values, outliers and find trends.
 
 The different interaction methods with each of the above visualization methods are enclosed within the following tasks performed in the main application area:
 
-    * Views synchronization
-         Go task
-         Selection
-         Zoom
-         Map navigation
-         Chart navigation
+  * Views synchronization
+    * Go task
+    * Selection
+    * Zoom
+    * Map navigation
+    * Chart navigation
          
 ### Development
 
 The development of this application has followed the following stages:
 
-0- Research of the available tools to develop the project
+##### 0- Research of the available tools to develop the project
 
 The project has been developed in the R programming language with the shiny library. Nevertheless, this application has made use of other libraries such as leaflet library in the implementation of the interactive map with the clustering option and the plotly library in the development of the charts of the graphics summary absolute panel.
 
-1- Data Preprocessing to get the data model
+##### 1- Data Preprocessing to get the data model
 
 The source code that corresponds to this part it is located in the DataPreprocessing folder and it has to be launched before the application starts.
 
 As the most of the application it is done with the business data, for testing purposes it recommended only run the part associated to clean and load this data. Only it is required to load the reviews for the calculate the ranking difference.
 The phase could be subdivided in the following stages:
 
-   1.1. Data collection
+######   1.1. Data collection
 The data used for the development of this application is freely downloaded from the webpage http://www.yelp.com/dataset_challenge.
-   1.2. Transform json and load the data in R
+######   1.2. Transform json and load the data in R
 For this purpose I used the library jsonlite to read and save in R the data and convert it into data.frames objects. Nevertheless, in the case of the reviews data set it is also required a compression and reduction of the dataset due to huge volume of text data.
 
 
 
-   1.3. Clean and filter the data
+######   1.3. Clean and filter the data
 In the cleaning data process, I transformed most of the variables with NA value into 0 or 0:00 in case of hours. This allows me to visualize these data without losing the lost of information knowledge in some cases.
 To visualize the data and locate it in the map, it is also extracted the zip_code from the business dataset.
-2- UI - View development
 
-   1.1. Composition and development of the different widgets in the ui.R file
+##### 2- UI - View development
+
+######   2.1. Composition and development of the different widgets in the ui.R file
  
 The UI is composed of two main views separate with a navbar and the tabPanel object, organized hierarchically with the composition of the following elements:
 
-     Data Explorer
-            selectInput (states, cities, zipcode, min and max score)
-            dataTableOutput
-     Interactive Map
-            leafletOutput (Interactive map)
-            absolutePanel (Graphs summary)
-            absolutePanel (Business explorer)
+  * Data Explorer
+    * selectInput (states, cities, zipcode, min and max score)
+    * dataTableOutput
+  * Interactive Map
+    * leafletOutput (Interactive map)
+    * absolutePanel (Graphs summary)
+    * absolutePanel (Business explorer)
             
-3- UI - Controller development
+##### 3- UI - Controller development
 
 This phase correspond to the development of the server side of the graphical interface server.R, it is responsible to perform the next two main tasks:
 
-   1.1. Development of the logic associated to each view
-   1.2. Coordination of each view to create an integrate and reactive design
+######   3.1. Development of the logic associated to each view
+######   3.2. Coordination of each view to create an integrate and reactive design
    
 The source code of this part it is composed of the following shiny elements to maintain synchronized the different views:
 
-      A reactive expression that returns the set of business that are in bounds right now
-      A reactive expression that filters the business, returning a data frame
-      Render plots to show a bar chart, a histogram and a scatterplot
-      An observer responsible for maintaining the circles and legend, according to the variables the user has chosen to map to color and size
-      An observer to show a popup with business info when the map is clicked
-      Observers to update the data explorer according to the filter options
-      Common functions that performs common calculations
+1. A reactive expression that returns the set of business that are in bounds right now
+2. A reactive expression that filters the business, returning a data frame
+3. Render plots to show a bar chart, a histogram and a scatterplot
+4. An observer responsible for maintaining the circles and legend, according to the variables the user has chosen to map to color and size
+5. An observer to show a popup with business info when the map is clicked
+6. Observers to update the data explorer according to the filter options
+7. Common functions that performs common calculations
       
 ## Contact information
 
