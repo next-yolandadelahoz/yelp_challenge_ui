@@ -16,22 +16,22 @@ Table of contents
 =================
 
 -   [Dataset description](#Dataset-description)
--   [Application domain](#Application domain)
--   [Application design](#overview-main)
-    -   [Components description](#Components description)
-    -   [Interactive map](#Interactive map)
-    -   [Popup message](#Popup message)
-    -   [Business explorer](#Business explorer)  
-    -   [Graph summary](#Graph summary)
-    -   [Data explorer](#Data explorer)
--   [Functional requirements definition](#Functional requirements definition)
-    -   [Data and task abstractions](#Data and task abstractions)
-    -   [Interaction and visual encoding](#Interaction and visual encoding)
+-   [Application domain](#Application-domain)
+-   [Application design](#Application-design)
+    -   [Components description](#Components-description)
+    -   [Interactive map](#Interactive-map)
+    -   [Popup message](#Popup-message)
+    -   [Business explorer](#Business-explorer)  
+    -   [Graph summary](#Graph-summary)
+    -   [Data explorer](#Data-explorer)
+-   [Functional requirements definition](#Functional-requirements-definition)
+    -   [Data and task abstractions](#Data-and-task-abstractions)
+    -   [Interaction and visual encoding](#Interaction-and-visual-encoding)
 -   [Development](#Development)
--   [Contact information](#Contact information)
--   [Web page](#Web page)
+-   [Contact information](#Contact-information)
+-   [Web page](#Web-page)
 
-<h2 id="Dataset-description"> Dataset description </h2>
+<h2 id="Dataset-description">Dataset description </h2>
 
 The dataset provided by Yelp (http://www.yelp.com/dataset_challenge) is based on 61 million reviews with the aim to help people find the most relevant businesses for everyday needs.
 The dataset is provided in JSON format and it includes some interesting features described below.
@@ -42,7 +42,7 @@ The dataset is provided in JSON format and it includes some interesting features
    * Check In: Business and check in info (hours).
    * Tip: Tip text, business, user, date and likes.
 
-## Application domain
+<h2 id="Application-domain">Application domain </h2>
 
 In this section, it is identified some relevant questions that the application should solve with the purpose of have a user-centered design that better fix the user requirements.
 
@@ -75,7 +75,7 @@ In the challenge webpage it is also proposed some interesting questions related 
 
 The questions (with the associated underlying variables) that I will develop corresponds to the most common needs of two targeted users: business owners and customers.
 
-## Application design
+<h2 id="Application-design">Application design </h2>
 
 As the design of this application is focused to answer the questions proposed before; first it is defined a list of the specific functional requirements that the application should fulfil. This list is corresponds to the data and task abstractions and the different visualization methods and interaction levels.
 
@@ -86,29 +86,29 @@ The application design is based in the following four main parts:
       * Graph summary: On the lower left side, that shows the different chart options (Bar chart, scatter plot and chart summary).
       * Data explorer: It can be accessed through the top navigation bar and shows a table with more detailed information.
 
-#### Components description
+<h3 id="Components-description">Components description </h3>
 
 In this section it is described the main components of the application and the different use cases and tasks that a user could perform to answer the proposed questions.
 
-##### Interactive map
+<h3 id="Interactive-map">Interactive map </h3>
 
 The interactive map shows a map with the data location. It can be navigated and zoomed to filter and show an interesting area.
 
 ![Alt text] (https://lh3.googleusercontent.com/INX-iQDemJp78FkgywWUk2xR479cYTgWcGhbPIAlD3YTITa-s1yfIRk5zCQkxEtOWWH8M_9x9eU89luCM-FCBex19AoyS_wwJjPgHbQELc9Q3wUc7OcUi7ggAl4UmJTYzg  "Interactive map")
 
-##### Popup message
+<h3 id="Popup-message">Popup message </h3>
 
 In the following picture it is shown an image with a zoomed region area showing in which the user has selected one of the business to show specific information such as the business categories that this business belongs to with the stars score and number of reviews.
 
 ![Alt text] (https://lh6.googleusercontent.com/4TTe09UIbThvBJMcdhlZFM70qXwOYL47El5fvgjvMnTwUatO0gv_rkmxSTmn0QVoD8HTJN3z8ZYmpLbbiFnwso2ej7WZk7pfHKtTitzMkVxf4ktz0Z1g_3Dd0xCkSuLDnw  "Popup message")
 
-#### Business explorer
+<h3 id="Business-explorer">Business explorer </h3>
 
 The business explorer allows the user to select interesting information and filter data. It is divided in two main parts: business explorer and filter options.
 
 Between the different filter options, it is allowed to show the currently open business that could be very interesting if it is compared with the closed business, for example to know how many stars had a business already closed in this area.This component also offers the possibility to restrict the data to show only the most ranking business with the minimum review number and the minimum stars sliders
 
-##### Graph summary
+<h3 id="Graph-summary">Graph summary </h3>
 
 The graph summary is an absolute panel displayed above the interactive map that offers different analytical visualization options such as bar chart, scatter plot and a bar chart summary of the current states.
 
@@ -123,7 +123,7 @@ In this figure it is shown also one the filtering options that allows the chart 
 
 ![Alt text] (https://lh3.googleusercontent.com/WkCW5SnWbGPexISTRrWOpiCRYshJZC4pb7O2h-_cpwEbLMrZACqXTk-5KjtaG_SUwECqgdym95fAfrTpYsyaKc3luzwbQZVAei-Ay9m20qz7tf0ynAm5YRDogffrlWo_0A "Graph summary")
 
-##### Data explorer
+<h3 id="Data-explorer">Data explorer </h3>
 
 The data explorer is a table that show more detailed information of each of the states, it allows also to filter information by location and state or given the maximum and minimum score.
 
@@ -134,9 +134,9 @@ The following image shows the possibility to search in this data explorer the mo
 
 ![Alt text] (https://lh5.googleusercontent.com/NseXxvo6XUqXGw6RactJKetsFwsuiXLRWZpGZ0ZLDkjY-qiM_toeQQeYtG0BGnVKBNNtsM16B05DDDippGuEk21k2wbUiQCa2eg-JByH2i-ZyNWcWR_SK1ll1uhDeLXXIA "Go task")
 
-### Functional requirements definition
+<h2 id="Functional-requirements-definition">Functional requirements definition </h2>
 
-##### Data and task abstractions
+<h3 id="Data-and-task-abstractions">Data and task abstractions </h3>
 
 The data that should be visualized in this application is extracted from the questions proposed before and ordered by the frequency of appearance in the questions:
 
@@ -170,7 +170,7 @@ For the definition of the task abstractions have been considered the following m
     * Data exploration
             Ordered table: show raking details
 
-##### Interaction and visual encoding
+<h3 id="Interaction-and-visual-encoding">Interaction and visual encoding </h3>
 
 The main visualization methods identified that best answer the proposed questions are:
 
@@ -196,8 +196,8 @@ The different interaction methods with each of the above visualization methods a
     * Zoom
     * Map navigation
     * Chart navigation
-         
-### Development
+
+<h2 id="Development">Development </h2>
 
 The development of this application has followed the following stages:
 
@@ -253,11 +253,12 @@ The source code of this part it is composed of the following shiny elements to m
 5. An observer to show a popup with business info when the map is clicked
 6. Observers to update the data explorer according to the filter options
 7. Common functions that performs common calculations
-      
+
+<h2 id="Contact-information">Contact information </h2>      
 ## Contact information
 
 Yolanda de la Hoz Simón. yolanda93h@gmail.com
 
-## Web page
+<h2 id="Web-page">Web page </h2> 
 
 http://yolanda93.github.io/yelp_challenge_ui/
